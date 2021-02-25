@@ -65,6 +65,12 @@
                         </div>
                     </form>
                 </div>
+
+                <div class="card-footer" style="text-align:center">
+                    <p>Not yet Registered? Register as:</p>
+                    <a href="{{ route('driver-register') }}"class="btn btn-outline-secondary m-1"><b>CAR OWNER</b></a>
+                    <a href="{{ route('passanger-register') }}"class="btn btn-outline-info m-1"><b>PASSANGER</b></a>
+                </div>
             </div>
         </div>
     </div>

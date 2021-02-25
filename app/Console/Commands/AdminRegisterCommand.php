@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\User;
+use App\Models\Role;
 use Carbon\Carbon;
 
 class AdminRegisterCommand extends Command
@@ -33,12 +34,19 @@ class AdminRegisterCommand extends Command
     }
 
     /**
+    
      * Execute the console command.
      *
      * @return int
      */
     public function handle()
     {
+        if (! Role::find(1)) {
+            $this->error('Role definitions have not been run.
+            please update the role definitions first using  php artisan roles:update command');
+            return;
+        }
+
         $name = $this->ask('Enter full name');
        $email = $this->ask('Enter the admin Email address');
 
@@ -74,6 +82,7 @@ class AdminRegisterCommand extends Command
        $user->email = $email;
        $user->email_verified_at = Carbon::now();
        $user->password = bcrypt($password);
+       $user->role_id = Role::where('slug','administrator')->pluck('id')->first();
        $user->save();
 
        $this->display($user);

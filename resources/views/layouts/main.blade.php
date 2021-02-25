@@ -7,4 +7,8 @@
             @yield('main-content')
         </div>
     </header>
+    <div class="container">        
+        <br>
+        @yield('main')
+    </div>
 @endsection

@@ -20,7 +20,6 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/driver-login','CustomRegisterLoginController@driverLogin')->name('driver-login');
 Route::get('/driver-register','CustomRegisterLoginController@driverRegister')->name('driver-register');
-Route::get('/passanger-login','CustomRegisterLoginController@passangerLogin')->name('passanger-login');
 Route::get('/passanger-register','CustomRegisterLoginController@passangerRegister')->name('passanger-register');
+Route::resource('users','UserController');

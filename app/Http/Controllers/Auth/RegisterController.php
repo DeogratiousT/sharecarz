@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use App\Models\Role;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -31,6 +33,12 @@ class RegisterController extends Controller
      */
     protected $redirectTo = RouteServiceProvider::HOME;
 
+    public function showRegistrationForm()
+    {
+        abort(404);
+        // return view('auth.register');
+    }
+
     /**
      * Create a new controller instance.
      *
@@ -53,6 +61,12 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'phone_number' => ['required', 'string'],
+            'gender' => ['required', 'string'],
+            'car_model' => ['nullable', 'string'],
+            'car_plate_number' => ['nullable', 'string'],
+            'car_capacity' => ['nullable', 'integer'],
+            'role' => ['required', 'string', 'exists:roles,slug'],
         ]);
     }
 
@@ -65,9 +79,16 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
+            'name' => Str::title($data['name']),
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'email' => $data['email'],
+            'phone_number' => $data['phone_number'],
+            'gender' => $data['gender'],
+            'car_model' => (isset($data['car_model']) ? Str::upper($data['car_model']) : null),
+            'car_plate_number' => (isset($data['car_plate_number']) ? Str::upper($data['car_plate_number']) : null),
+            'car_capacity' => $data['car_capacity'],
+            'role_id' => Role::where('slug', $data['role'])->pluck('id')->first(),
         ]);
     }
 }

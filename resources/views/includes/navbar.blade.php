@@ -1,5 +1,5 @@
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+<nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top" id="mainNav">
     <div class="container">
       <a class="navbar-brand" href="{{ route('home') }}">Sharecarz</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,21 +12,21 @@
             <a class="nav-link" href="{{ route('home') }}">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('home') }}">Users</a>
+            <a class="nav-link" href="{{ route('users.index') }}">Users</a>
           </li>
           <!-- Authentication Links -->
             @guest
                 @if (Route::has('register'))
                     <li class="nav-item mx-1">
-                        <a class="nav-link btn btn-outline-secondary" href="{{ route('driver-login') }}">{{ __('Transport Passangers') }}</a>
+                        <a class="nav-link btn btn-outline-secondary" href="{{ route('login') }}">{{ __('Transport Passangers') }}</a>
                     </li>
                     <li class="nav-item mx-1">
-                        <a class="nav-link btn btn-outline-info" href="{{ route('passanger-login') }}">{{ __('Hire a Car') }}</a>
+                        <a class="nav-link btn btn-outline-info" href="{{ route('login') }}">{{ __('Hire a Car') }}</a>
                     </li>
                 @endif
-                {{-- <li class="nav-item mx-1">
+                <li class="nav-item mx-1">
                     <a class="nav-link btn btn-outline-success" href="{{ route('login') }}">{{ __('Login') }} <span><i class="mdi mdi-login"></i></span></a>
-                </li> --}}
+                </li>
             @else
                 <li class="nav-item dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

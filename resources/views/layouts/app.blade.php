@@ -13,8 +13,9 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
-    <!-- Bootstrap core CSS -->
+    <!-- Bootstrap core CSS and JS -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script src="{{ asset('js/app.js') }}"></script>
 
     <!-- Custom fonts for this template -->
     <link rel="stylesheet" href="//cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css">
@@ -23,6 +24,7 @@
 
     <!-- Custom styles for this template -->
     <link href="{{ asset('css/clean-blog.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/dataTables.bootstrap4.min.css') }}" rel="stylesheet" />
 
 </head>
 <body>
@@ -39,7 +41,6 @@
     </div>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="{{ asset('js/app.js') }}"></script>
 
     <!-- Custom scripts for this template -->
     <script src="{{ asset('js/clean-blog.js') }}"></script>

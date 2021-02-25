@@ -11,8 +11,8 @@
                     <h1>Sharecarz</h1>
                     <span class="subheading">Enjoy Safe Trips with us</span>
                     <span>
-                        <a href="{{ route('driver-login') }}" class="btn btn-outline-dark mt-3 text-light">Transport Passangers</a>
-                        <a href="{{ route('passanger-login') }}" class="btn btn-outline-info mt-3 text-light">Hire a Car</a>
+                        <a href="{{ route('login') }}" class="btn btn-outline-dark mt-3 text-light">Transport Passangers</a>
+                        <a href="{{ route('login') }}" class="btn btn-outline-info mt-3 text-light">Hire a Car</a>
                     </span>
                 </div>
                 </div>
