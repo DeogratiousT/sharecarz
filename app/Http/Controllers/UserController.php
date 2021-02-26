@@ -14,6 +14,15 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -128,9 +137,9 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        if ($user->state == 0) {
+        if ($user->active_account == false) {
 
-            $user->state = 1;
+            $user->active_account = true;
 
             $user->save();
 
@@ -138,7 +147,7 @@ class UserController extends Controller
 
         }else{
 
-            $user->state = 0;
+            $user->active_account = false;
 
             $user->save();
 

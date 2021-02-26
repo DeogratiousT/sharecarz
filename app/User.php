@@ -41,4 +41,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Models\Role');
     }
+
+    public function inRole(Array $roleSlugs)
+    {
+        return $this->role->hasRole($roleSlugs);
+    }
 }

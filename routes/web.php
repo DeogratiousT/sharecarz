@@ -22,4 +22,7 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/driver-register','CustomRegisterLoginController@driverRegister')->name('driver-register');
 Route::get('/passanger-register','CustomRegisterLoginController@passangerRegister')->name('passanger-register');
-Route::resource('users','UserController');
+
+Route::middleware(['auth','active'])->group(function () {
+    Route::resource('users','UserController');
+});

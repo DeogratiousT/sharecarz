@@ -1,4 +1,4 @@
-<a href="{{ route('users.edit', $user) }}" class="action-icon" data-toggle="tooltip" data-placement="bottom" title="View User"> <i class="mdi mdi-square-edit-outline"></i></a>
+{{-- <a href="{{ route('users.edit', $user) }}" class="action-icon" data-toggle="tooltip" data-placement="bottom" title="View User"> <i class="mdi mdi-square-edit-outline"></i></a> --}}
 
 @if ($user->role->slug !== 'administrator')
     

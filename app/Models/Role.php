@@ -21,4 +21,14 @@ class Role extends Model
             ->generateSlugsFrom('name')
             ->saveSlugsTo('slug');
     }
+
+    public function hasRole(Array $roleSlugs)
+    {
+        foreach ($roleSlugs as $roleSlug) {
+            if ($roleSlug == $this->slug) {
+                return true;
+            }
+            return false;
+        }
+    }
 }
