@@ -20,8 +20,8 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->unsignedBigInteger('role_id');
-            $table->string('phone_number');
-            $table->string('gender');
+            $table->string('phone_number')->nullable();
+            $table->string('gender')->nullable();
             $table->string('car_model')->nullable();
             $table->string('car_plate_number')->nullable();
             $table->integer('car_capacity')->nullable();
