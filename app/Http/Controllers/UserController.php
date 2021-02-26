@@ -43,9 +43,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles = Role::whereNotIn('id', [1])->get();
+        // $roles = Role::whereNotIn('id', [1])->get();
 
-        return view('users.create',['roles'=>$roles]);
+        // return view('users.create',['roles'=>$roles]);
     }
 
     /**
@@ -56,7 +56,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $user = new User;
+        // $user = new User;
 
         // $request->validate([
         //     'first_name' => 'required',
@@ -67,17 +67,17 @@ class UserController extends Controller
         //     'role_id' => 'required|exist:roles,id',
         // ]);
 
-        $user->name = $request->first_name.' '.$request->other_names;
-        $user->email = $request->email;
-        $user->organisation = $request->organisation;
-        $user->phone_number = $request->phone_number;
-        $user->password = Hash::make('Password1234');
-        $user->role_id = $request->role_id;
-        $user->email_verified_at = now();
+        // $user->name = $request->first_name.' '.$request->other_names;
+        // $user->email = $request->email;
+        // $user->organisation = $request->organisation;
+        // $user->phone_number = $request->phone_number;
+        // $user->password = Hash::make('Password1234');
+        // $user->role_id = $request->role_id;
+        // $user->email_verified_at = now();
 
-        $user->save();
+        // $user->save();
 
-        return redirect()->route('users.index')->with('success','User Created Successfully');
+        // return redirect()->route('users.index')->with('success','User Created Successfully');
     }
 
     /**
@@ -99,9 +99,9 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        $roles = Role::all();
+        // $roles = Role::all();
 
-        return view('users.edit',['user'=>$user, 'roles'=>$roles]);
+        // return view('users.edit',['user'=>$user, 'roles'=>$roles]);
     }
 
     /**

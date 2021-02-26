@@ -25,4 +25,6 @@ Route::get('/passanger-register','CustomRegisterLoginController@passangerRegiste
 
 Route::middleware(['auth','active'])->group(function () {
     Route::resource('users','UserController');
+
+    Route::get('transport-passangers','TransportPassangerController@index')->name('transport-passangers');
 });

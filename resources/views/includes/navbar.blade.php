@@ -19,17 +19,16 @@
             @endif
           @endauth
           <!-- Authentication Links -->
+                            
+            <li class="nav-item mx-1">
+                <a class="nav-link btn btn-outline-secondary" href="{{ route('transport-passangers') }}">{{ __('Transport Passangers') }}</a>
+            </li>
+            <li class="nav-item mx-1">
+                <a class="nav-link btn btn-outline-info" href="{{ route('login') }}">{{ __('Hire a Car') }}</a>
+            </li>
             @guest
-                @if (Route::has('register'))
-                    <li class="nav-item mx-1">
-                        <a class="nav-link btn btn-outline-secondary" href="{{ route('login') }}">{{ __('Transport Passangers') }}</a>
-                    </li>
-                    <li class="nav-item mx-1">
-                        <a class="nav-link btn btn-outline-info" href="{{ route('login') }}">{{ __('Hire a Car') }}</a>
-                    </li>
-                @endif
                 <li class="nav-item mx-1">
-                    <a class="nav-link btn btn-outline-success" href="{{ route('login') }}">{{ __('Login') }} <span><i class="mdi mdi-login"></i></span></a>
+                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }} <span><i class="mdi mdi-login"></i></span></a>
                 </li>
             @else
                 <li class="nav-item dropdown">

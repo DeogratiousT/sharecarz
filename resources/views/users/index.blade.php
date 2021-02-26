@@ -1,9 +1,11 @@
 @extends('layouts.main')
 
 @section('main')
+<div class="container">
+    <br>
     <h3 class="float-left">Users</h3>
 
-    <a href="{{ route('users.create') }}" class="btn btn-info float-right mb-2"><i class="mdi mdi-plus-circle mr-1"></i>Add User</a>
+    {{-- <a href="{{ route('users.create') }}" class="btn btn-info float-right mb-2"><i class="mdi mdi-plus-circle mr-1"></i>Add User</a> --}}
 
     <div class="clearfix"></div>
 
@@ -41,5 +43,5 @@
     <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
     <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('js/dataTables.bootstrap4.min.js') }}"></script>
-
+</div>
 @endsection

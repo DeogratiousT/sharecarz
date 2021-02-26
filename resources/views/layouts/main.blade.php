@@ -7,8 +7,8 @@
             @yield('main-content')
         </div>
     </header>
-    <div class="container">        
-        <br>
+    <div>        
+        {{-- <br> --}}
         @yield('main')
     </div>
 @endsection
