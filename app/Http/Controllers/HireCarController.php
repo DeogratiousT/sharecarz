@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 
-class TransportPassangerController extends Controller
+class HireCarController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -15,12 +15,12 @@ class TransportPassangerController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('driver');
+        $this->middleware(['passanger']);
     }
 
     public function index()
     {
-        return view('transport-passangers.index');
+        return view('hire-cars.index');
     }
 
     public function store()

@@ -27,4 +27,8 @@ Route::middleware(['auth','active'])->group(function () {
     Route::resource('users','UserController');
 
     Route::get('transport-passangers','TransportPassangerController@index')->name('transport-passangers');
+    Route::get('transport-passangers/save-location','TransportPassangerController@store')->name('driver-save-location');
+
+    Route::get('hire-cars','HireCarController@index')->name('hire-cars');
+    Route::get('hire-cars/save-location','HireCarController@store')->name('passanger-save-location');
 });

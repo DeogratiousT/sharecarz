@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','role_id', 'phone_number', 'gender', 'car_model', 'car_plate_number', 'car_capacity', 'active_account'
+        'name', 'email', 'password','role_id', 'phone_number', 'gender', 'car_model', 'car_plate_number', 'car_capacity', 'active_account','geopoint'
     ];
 
     /**
@@ -35,6 +35,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'geopoint' => 'array',
     ];
 
     public function role()

@@ -28,7 +28,7 @@ class Role extends Model
             if ($roleSlug == $this->slug) {
                 return true;
             }
-            return false;
         }
+        return false;
     }
 }

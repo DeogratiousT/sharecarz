@@ -20,17 +20,27 @@
           @endauth
           <!-- Authentication Links -->
                             
-            <li class="nav-item mx-1">
-                <a class="nav-link btn btn-outline-secondary" href="{{ route('transport-passangers') }}">{{ __('Transport Passangers') }}</a>
-            </li>
-            <li class="nav-item mx-1">
-                <a class="nav-link btn btn-outline-info" href="{{ route('login') }}">{{ __('Hire a Car') }}</a>
-            </li>
             @guest
+                <li class="nav-item mx-1">
+                    <a class="nav-link btn btn-outline-secondary" href="{{ route('transport-passangers') }}">{{ __('Transport Passangers') }}</a>
+                </li>
+                <li class="nav-item mx-1">
+                    <a class="nav-link btn btn-outline-info" href="{{ route('hire-cars') }}">{{ __('Hire a Car') }}</a>
+                </li>
                 <li class="nav-item mx-1">
                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }} <span><i class="mdi mdi-login"></i></span></a>
                 </li>
             @else
+                @if (Auth::user()->inRole(['administrator','car-owner']))
+                    <li class="nav-item mx-1">
+                        <a class="nav-link btn btn-outline-secondary" href="{{ route('transport-passangers') }}">{{ __('Transport Passangers') }}</a>
+                    </li>
+                @endif
+                @if (Auth::user()->inRole(['administrator','passanger']))  
+                    <li class="nav-item mx-1">
+                        <a class="nav-link btn btn-outline-info" href="{{ route('hire-cars') }}">{{ __('Hire a Car') }}</a>
+                    </li>
+                @endif
                 <li class="nav-item dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         {{ Auth::user()->name }}

@@ -100,14 +100,14 @@
 				map.setCenter(pos);
 
 				carMarker.addListener("click", function(){
-					infoWindow.setContent('<?php echo("Driver:"); echo(Auth::user()->name); ?>&nbsp;&nbsp;<br><?php echo("Capacity:"); echo(Auth::user()->car_capacity);?>');
+					infoWindow.setContent('<?php echo("Passanger:"); echo(Auth::user()->name); ?>&nbsp;&nbsp;');
 					infoWindow.open(map,carMarker);
 				});
 			}
 
 			function savePosition(pos) {
 				$.ajax({
-                    url: "{{ route('driver-save-location') }}",
+                    url: "{{ route('passanger-save-location') }}",
                     type: "POST",
                     data:{
                         pos:pos,
