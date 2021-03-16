@@ -31,4 +31,5 @@ Route::middleware(['auth','active'])->group(function () {
 
     Route::get('hire-cars','HireCarController@index')->name('hire-cars');
     Route::post('hire-cars/save-location','HireCarController@store')->name('passanger-save-location');
+    Route::resource('ride-requests','RideRequestController');
 });

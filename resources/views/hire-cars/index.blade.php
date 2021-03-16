@@ -121,7 +121,7 @@
 
 				carMarker.addListener("click", function(){
 					infoWindow.setContent(
-            "<div><p>Driver: " + driver.name + "</p><p>Driver Phone Number: " + driver.phone_number + "</p><p>Car Plate No: " + driver.car_plate_number + "</p><p>Car Capacity: " + driver.car_capacity + "</p><a href='{{ route('home') }}' class='btn btn-primary'>Request Car</a></div>"
+            "<div><p>Driver: " + driver.name + "</p><p>Driver Phone Number: " + driver.phone_number + "</p><p>Car Plate No: " + driver.car_plate_number + "</p><p>Car Capacity: " + driver.car_capacity + "</p><a href='{{ route('ride-requests.create') }}?driver=" + driver.id +"' class='btn btn-primary'>Request Car</a></div>"
           );
 					infoWindow.open(map,carMarker);
 				});
