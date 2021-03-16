@@ -23,7 +23,7 @@ class TransportPassangerController extends Controller
         return view('transport-passangers.index');
     }
 
-    public function store()
+    public function store(Request $request)
     {
         $user = Auth::user();
 

@@ -48,6 +48,7 @@
 		let map, infoWindow;
 
 		function initMap() {
+
 			map = new google.maps.Map(document.getElementById("map"), {
 			center: { lat: 34.0522, lng: -118.2437 },
 			zoom: 17,
@@ -62,6 +63,11 @@
 			map.controls[google.maps.ControlPosition.TOP_LEFT].push(
 			locationButton
 			);
+
+      var drivers = <?php print json_encode($drivers); ?>;
+      for (let index = 0; index < drivers.length; index++) {
+          addCarMarker(drivers[index]);        
+      }
 
 			locationButton.addEventListener("click", () => {
 			// Try HTML5 geolocation.
@@ -90,7 +96,7 @@
 
 			function addMarker(pos){
 				console.log(pos);
-				const image = "{{ asset('img/car-maps.png') }}";
+				const image = "{{ asset('img/green-dot.png') }}";
                 carMarker = new google.maps.Marker({
                   position: pos,
                   map: map,
@@ -101,6 +107,22 @@
 
 				carMarker.addListener("click", function(){
 					infoWindow.setContent('<?php echo("Passanger:"); echo(Auth::user()->name); ?>&nbsp;&nbsp;');
+					infoWindow.open(map,carMarker);
+				});
+			}
+
+      function addCarMarker(driver){
+				const image = "{{ asset('img/car-maps.png') }}";
+                carMarker = new google.maps.Marker({
+                  position: {lat: Number(driver.geopoint["lat"]), lng: Number(driver.geopoint["lng"])},
+                  map: map,
+                  icon: image,
+                });
+
+				carMarker.addListener("click", function(){
+					infoWindow.setContent(
+            "<div><p>Driver: " + driver.name + "</p><p>Driver Phone Number: " + driver.phone_number + "</p><p>Car Plate No: " + driver.car_plate_number + "</p><p>Car Capacity: " + driver.car_capacity + "</p><a href='{{ route('home') }}' class='btn btn-primary'>Request Car</a></div>"
+          );
 					infoWindow.open(map,carMarker);
 				});
 			}

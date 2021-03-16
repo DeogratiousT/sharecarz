@@ -20,7 +20,9 @@ class HireCarController extends Controller
 
     public function index()
     {
-        return view('hire-cars.index');
+        $drivers = User::where('role_id','2')->get();
+        
+        return view('hire-cars.index',['drivers'=>$drivers]);
     }
 
     public function store()
