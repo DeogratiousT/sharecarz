@@ -66,7 +66,7 @@
 			);
 
       const saveButton = document.createElement("button");
-			saveButton.textContent = "Save Pick Up Location";
+			saveButton.textContent = "Save Destination Location";
 			saveButton.classList.add("custom-map-control-button");
       saveButton.style.backgroundColor = "green";
       saveButton.style.color = "white";
@@ -128,7 +128,7 @@
       saveButton.addEventListener("click", function() {
 
         $.ajax({
-                    url: "{{ route('passanger-save-pick-up',['driver'=>$driver]) }}",
+                    url: "{{ route('passanger-save-destination',['driver'=>$driver]) }}",
                     type: "POST",
                     data:{
                         pos:pos,
@@ -137,7 +137,9 @@
                     success:function(response){
                         if(response) {
                           window.location.href = response.redirect;
-                          alert(response.success);                          
+                          alert(response.success);
+                        }else{
+                          alert('Error Saving this Location, Try again');
                         }
                     },
                 });
