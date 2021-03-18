@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class RideRequest extends Model
 {
-    protected $fillable = ['passanger_id','driver_id','destination'];
+    protected $fillable = ['passanger_id','driver_id','destination','current_location'];
 
     protected $casts = [
-        'geopoint' => 'array',
+        'destination' => 'array',
+        'current_location' => 'array',
     ];
 
     public function passanger()

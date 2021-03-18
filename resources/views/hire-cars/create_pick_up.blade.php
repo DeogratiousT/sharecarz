@@ -54,36 +54,40 @@
 			zoom: 17,
 			});
 
+			var carMarker;
+      var pos;
 			var infoWindow = new google.maps.InfoWindow();;
 
 			const locationButton = document.createElement("button");
-      locationButton.style.backgroundColor = "green";
-      locationButton.style.color = "white";
-			locationButton.textContent = "Request Ride";
+			locationButton.textContent = "Pan to Current Location";
 			locationButton.classList.add("custom-map-control-button");
-			map.controls[google.maps.ControlPosition.TOP_RIGHT].push(
+			map.controls[google.maps.ControlPosition.TOP_LEFT].push(
 			locationButton
 			);
 
-      var drivers = <?php print json_encode($drivers); ?>;
-      for (let index = 0; index < drivers.length; index++) {
-          addCarMarker(drivers[index]);        
-      }
+      const saveButton = document.createElement("button");
+			saveButton.textContent = "Save Pick Up Location";
+			saveButton.classList.add("custom-map-control-button");
+      saveButton.style.backgroundColor = "green";
+      saveButton.style.color = "white";
+			map.controls[google.maps.ControlPosition.TOP_RIGHT].push(
+			saveButton
+			);
 
 			locationButton.addEventListener("click", () => {
-        alert('Find Cars Near You (With Red Markers) and click on any to request Car');
+        alert('From you current location, Drag your Green marker to the pick up point of choise then click "Save Location" button on screen top right to save');
 			// Try HTML5 geolocation.
 				if (navigator.geolocation) {
 					navigator.geolocation.getCurrentPosition(
 					(position) => {
-						const pos = {
+						   pos = {
 						lat: position.coords.latitude,
 						lng: position.coords.longitude,
 						};
 						
 						addMarker(pos);
 
-						savePosition(pos);
+						// savePosition(pos);
 						
 					},
 					() => {
@@ -97,41 +101,34 @@
 			});
 
 			function addMarker(pos){
-				console.log(pos);
 				const image = "{{ asset('img/green-dot.png') }}";
-                const myMarker = new google.maps.Marker({
+                carMarker = new google.maps.Marker({
                   position: pos,
                   map: map,
                   icon: image,
+                  draggable: true
                 });
 
 				map.setCenter(pos);
+        
+        carMarker.addListener("dragend", function(evt) {
+          // console.log(evt.latLng.lat());
+          pos = evt.latLng;
+          carMarker.setPosition(pos);
+				  map.setCenter(pos);
 
-				myMarker.addListener("click", function(){
-					infoWindow.setContent('<?php echo("Passanger:"); echo(Auth::user()->name); ?>&nbsp;&nbsp;');
-					infoWindow.open(map,myMarker);
-				});
-			}
-
-      function addCarMarker(driver){
-				const image = "{{ asset('img/car-maps.png') }}";
-                var carMarker = new google.maps.Marker({
-                  position: {lat: Number(driver.geopoint["lat"]), lng: Number(driver.geopoint["lng"])},
-                  map: map,
-                  icon: image,
-                });
+        });
 
 				carMarker.addListener("click", function(){
-					infoWindow.setContent(
-            "<div><p>Driver: " + driver.name + "</p><p>Driver Phone Number: " + driver.phone_number + "</p><p>Car Plate No: " + driver.car_plate_number + "</p><p>Car Capacity: " + driver.car_capacity + "</p><a href='{{ route('passanger-save-car') }}?driver=" + driver.id +"' class='btn btn-primary'>Request Car</a></div>"
-          );
+					infoWindow.setContent('<?php echo("Passanger:"); echo(Auth::user()->name); ?>&nbsp;&nbsp;');
 					infoWindow.open(map,carMarker);
 				});
 			}
 
-			function savePosition(pos) {
-				$.ajax({
-                    url: "{{ route('passanger-save-location') }}",
+      saveButton.addEventListener("click", function() {
+
+        $.ajax({
+                    url: "{{ route('passanger-save-pick-up',['driver'=>$driver]) }}",
                     type: "POST",
                     data:{
                         pos:pos,
@@ -143,7 +140,8 @@
                         }
                     },
                 });
-			}
+						
+					});
 
 		}
 

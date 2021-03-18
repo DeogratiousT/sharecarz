@@ -18,6 +18,7 @@ class CreateRideRequestsTable extends Migration
             $table->unsignedBigInteger('passanger_id');
             $table->unsignedBigInteger('driver_id');
             $table->jsonb('destination')->nullable();
+            $table->jsonb('current_location')->nullable();
             $table->timestamps();
         });
     }

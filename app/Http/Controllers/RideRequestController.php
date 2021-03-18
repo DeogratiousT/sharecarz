@@ -24,7 +24,7 @@ class RideRequestController extends Controller
      */
     public function create(Request $request)
     {
-        dd($request->driver);
+        // 
     }
 
     /**
@@ -35,7 +35,10 @@ class RideRequestController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if (isset($request->driver)) {
+           dd($request->driver); 
+            return view('hire-cars.create_my_location');
+        }
     }
 
     /**

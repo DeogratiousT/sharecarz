@@ -28,9 +28,9 @@
     <link href="{{ asset('css/clean-blog.css') }}" rel="stylesheet">
     <link href="{{ asset('css/dataTables.bootstrap4.min.css') }}" rel="stylesheet" />
 
-    <script type="text/javascript">
+    {{-- <script type="text/javascript">
         setTimeout(() => document.querySelector('.alert').remove(), 8000);
-    </script>
+    </script> --}}
 
 </head>
 <body>
