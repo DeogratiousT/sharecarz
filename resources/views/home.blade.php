@@ -32,6 +32,6 @@
     </header>
     <div class="container">
         <h2 class="post-title" style="text-align:center">ABOUT US</h2>
-        <p style="text-align:justify">. ShareCarz is a web based application that creates a carpooling (ridesharing) platform. The application enbles drivers to register for ShareCarz and duly update their travel details accordingly. Travelers access carpooling details from the platform and also include their choices on the kind of person they prefer for the journey. Drivers can either accept or decline their choices according to the specifications of travel partner’s indicated. The platform is overseen and regulated by the administrators who are responsible for solid performance of the platform.</p>
+        <p style="text-align:justify">ShareCarz is a web based application that creates a carpooling (ridesharing) platform. The application enbles drivers to register for ShareCarz and duly update their travel details accordingly. Travelers access carpooling details from the platform and also include their choices on the kind of person they prefer for the journey. Drivers can either accept or decline their choices according to the specifications of travel partner’s indicated. The platform is overseen and regulated by the administrators who are responsible for solid performance of the platform.</p>
     </div>
 @endsection
