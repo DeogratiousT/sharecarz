@@ -57,13 +57,21 @@
 			var infoWindow = new google.maps.InfoWindow();;
 
 			const locationButton = document.createElement("button");
-			locationButton.textContent = "Pan to Current Location";
+			locationButton.textContent = "Transport Passangers";
+      locationButton.style.backgroundColor = "green";
+      locationButton.style.color = "white";
 			locationButton.classList.add("custom-map-control-button");
-			map.controls[google.maps.ControlPosition.TOP_LEFT].push(
+			map.controls[google.maps.ControlPosition.TOP_RIGHT].push(
 			locationButton
 			);
 
+			var rides = <?php print json_encode($rides); ?>;
+      for (let index = 0; index < rides.length; index++) {
+          addRideMarker(rides[index]);        
+      }
+
 			locationButton.addEventListener("click", () => {
+        alert('View Passangers Who have requested your Services (in green Markers) and Accept or reject their Requests');
 			// Try HTML5 geolocation.
 				if (navigator.geolocation) {
 					navigator.geolocation.getCurrentPosition(
@@ -95,6 +103,7 @@
                   position: pos,
                   map: map,
                   icon: image,
+                  draggable: true,
                 });
 
 				map.setCenter(pos);
@@ -102,6 +111,22 @@
 				carMarker.addListener("click", function(){
 					infoWindow.setContent('<?php echo("Driver:"); echo(Auth::user()->name); ?>&nbsp;&nbsp;<br><?php echo("Capacity:"); echo(Auth::user()->car_capacity);?>');
 					infoWindow.open(map,carMarker);
+				});
+			}
+
+      function addRideMarker(ride){
+				const image = "{{ asset('img/green-dot.png') }}";
+                var rideMarker = new google.maps.Marker({
+                  position: {lat: Number(ride.current_location["lat"]), lng: Number(ride.current_location["lng"])},
+                  map: map,
+                  icon: image,
+                });
+
+				rideMarker.addListener("click", function(){
+					infoWindow.setContent(
+            "<div><p>Passanger Name: " + ride.passanger.name + "</p><p>Passanger Phone Number: " + ride.passanger.phone_number + "</p><p>Status: " + ride.status + "</p><a href='{{ route('approve-ride') }}?passanger=" + ride.passanger.id + "' class='btn btn-danger'>Reject</a><a href='{{ route('reject-ride') }}?passanger=" + ride.passanger.id + "' class='btn btn-secondary'>Approve</a><a href='{{ route('complete-ride') }}?passanger=" + ride.passanger.id + "' class='btn btn-success'>Approve</a></div>" 
+          );
+					infoWindow.open(map,rideMarker);
 				});
 			}
 

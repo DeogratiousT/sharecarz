@@ -28,7 +28,10 @@ Route::middleware(['auth','active'])->group(function () {
 
     Route::get('transport-passangers','TransportPassangerController@index')->name('transport-passangers');
     Route::post('transport-passangers/save-location','TransportPassangerController@store')->name('driver-save-location');
-
+    Route::get('transport-passangers/approve','TransportPassangerController@approve')->name('approve-ride');
+    Route::get('transport-passangers/reject','TransportPassangerController@reject')->name('reject-ride');
+    Route::get('transport-passangers/complete','TransportPassangerController@complete')->name('complete-ride');
+    
     Route::get('hire-cars','HireCarController@index')->name('hire-cars');
     Route::get('hire-cars/my-rides','HireCarController@show')->name('hire-cars-my-rides');
     Route::post('hire-cars/save-location','HireCarController@store')->name('passanger-save-location');
