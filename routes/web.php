@@ -30,6 +30,7 @@ Route::middleware(['auth','active'])->group(function () {
     Route::post('transport-passangers/save-location','TransportPassangerController@store')->name('driver-save-location');
 
     Route::get('hire-cars','HireCarController@index')->name('hire-cars');
+    Route::get('hire-cars/my-rides','HireCarController@show')->name('hire-cars-my-rides');
     Route::post('hire-cars/save-location','HireCarController@store')->name('passanger-save-location');
     Route::get('hire-cars/save-car','HireCarController@saveCar')->name('passanger-save-car');
 
@@ -38,6 +39,6 @@ Route::middleware(['auth','active'])->group(function () {
 
     Route::post('hire-cars/{driver}/savedestination','HireCarController@saveDestination')->name('passanger-save-destination');
     Route::get('hire-cars/{driver}/createdestination','HireCarController@createDestination')->name('passanger-create-destination');
-    
+
     Route::resource('ride-requests','RideRequestController');
 });

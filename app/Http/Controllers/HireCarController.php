@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Models\RideRequest;
+use Freshbitsweb\Laratables\Laratables;
+// use App\Laratables\UsersLaratables;
 
 class HireCarController extends Controller
 {
@@ -24,6 +26,18 @@ class HireCarController extends Controller
         $drivers = User::where('role_id','2')->get();
         
         return view('hire-cars.index',['drivers'=>$drivers]);
+    }
+
+    public function show()
+    {
+        if (request()->ajax()) {
+            return Laratables::recordsOf(RideRequest::class, function($query)
+                {
+                    return $query->where('passanger_id', Auth::user()->id);
+                });
+        }
+
+        return view('hire-cars.show');
     }
 
     public function store(Request $request)

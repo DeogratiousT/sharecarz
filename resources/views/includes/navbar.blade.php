@@ -38,6 +38,9 @@
                 @endif
                 @if (Auth::user()->inRole(['administrator','passanger']))  
                     <li class="nav-item mx-1">
+                        <a class="nav-link" href="{{ route('hire-cars-my-rides') }}">{{ __('My Rides') }}</a>
+                    </li>
+                    <li class="nav-item mx-1">
                         <a class="nav-link btn btn-outline-info" href="{{ route('hire-cars') }}">{{ __('Hire a Car') }}</a>
                     </li>
                 @endif
