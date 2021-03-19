@@ -54,10 +54,21 @@ class HireCarController extends Controller
 
     public function saveCar(Request $request)
     {
-        RideRequest::firstOrCreate([
-            'driver_id' => $request->driver,
-            'passanger_id' => Auth::user()->id,
-        ]);
+        $ride = RideRequest::where([['driver_id', $request->driver],['passanger_id', Auth::user()->id]])->first();
+        if ($ride == null )
+        {
+            $newride = new  RideRequest;
+            $newride->driver_id = $request->driver;
+            $newride->passanger_id = Auth::user()->id;
+            $newride->status = 'requested';
+
+            $newride->save();
+        }else{
+            $ride->status = 'requested';
+            $ride->save();
+        }
+
+
 
         return redirect()->route('passanger-create-pick-up',['driver'=>$request->driver])->with('success', 'Set pick up point to make order');
     }

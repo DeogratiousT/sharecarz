@@ -124,7 +124,7 @@
 
 				rideMarker.addListener("click", function(){
 					infoWindow.setContent(
-            "<div><p>Passanger Name: " + ride.passanger.name + "</p><p>Passanger Phone Number: " + ride.passanger.phone_number + "</p><p>Status: " + ride.status + "</p><a href='{{ route('approve-ride') }}?passanger=" + ride.passanger.id + "' class='btn btn-danger'>Reject</a><a href='{{ route('reject-ride') }}?passanger=" + ride.passanger.id + "' class='btn btn-secondary'>Approve</a><a href='{{ route('complete-ride') }}?passanger=" + ride.passanger.id + "' class='btn btn-success'>Approve</a></div>" 
+            "<div><p>Passanger Name: " + ride.passanger.name + "</p><p>Passanger Phone Number: " + ride.passanger.phone_number + "</p><p>Status: " + ride.status + "</p><a href='{{ route('approve-ride') }}?passanger=" + ride.passanger.id + "' class='btn btn-success'>Approve</a><a href='{{ route('reject-ride') }}?passanger=" + ride.passanger.id + "' class='btn btn-danger'>Reject</a><a href='{{ route('complete-ride') }}?passanger=" + ride.passanger.id + "' class='btn btn-secondary'>Complete</a></div>" 
           );
 					infoWindow.open(map,rideMarker);
 				});
